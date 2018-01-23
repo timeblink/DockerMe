@@ -1,0 +1,21 @@
+server{
+  listen 80;
+  server_name 127.0.0.1 scm.home.lutx0528.cn;
+  root /website/root;
+  index index.html;
+  access_log /var/log/nginx/local.access.log;
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+  location /impress/ {
+    alias /website/libs/impress/;
+  }
+  location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+    root /website/root;
+    expires 30d;
+  }
+  location /NginxStatus {
+    stub_status on;
+    access_log  on;
+  }
+}

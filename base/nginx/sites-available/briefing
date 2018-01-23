@@ -1,0 +1,36 @@
+server{
+  listen 85 default_server bind;
+  server_name_in_redirect on;
+  server_name 127.0.0.1 scm.ppt.lutx0528.cn;
+  root /website/briefing;
+  proxy_redirect off;
+  index index.html;
+  access_log /var/log/nginx/ppt.access.log;
+  error_log /var/log/nginx/ppt.errors.log;
+  location / {
+    try_files $uri $uri/ /index.html;
+    autoindex on;
+    autoindex_exact_size off;
+    autoindex_localtime on;
+  }
+  location /pictures/ {
+    alias /website/libs/pictures/;
+  }
+  location /shower/ {
+    alias /website/libs/shower/;
+  }
+  location /jquery/ {
+    alias /website/libs/jquery/;
+  }
+  location /timesheet/ {
+    alias /website/libs/timesheet/;
+  }
+  location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+    root /website/libs;
+    expires 30d;
+  }
+  location /NginxStatus {
+    stub_status on;
+    access_log  on;
+  }
+}
