@@ -18,3 +18,5 @@ RUN pip install scrapy
 
 VOLUME ["/workspace"]
 WORKDIR /workspace
+
+ENTRYPOINT ["scrapy"]

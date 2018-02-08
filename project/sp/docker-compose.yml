@@ -1,0 +1,15 @@
+version: '2.0'
+services:
+  chrome:
+    image: selenium/standalone-chrome:latest
+    container_name: selenium-hub
+    shm_size: '2gb'
+  sptools:
+    image: python/sptools:2.7
+    volumes:
+      - /home/lutx0528/fullstack/develop/github/DockerMe/project/sp:/workspace
+    depends_on:
+      - chrome
+    links:
+      - chrome
+    #command: ["test.py"]
