@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_USER=gerrit
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=reviewdb
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    networks:
+      - gerrit_nw
+  gerrit:
+    image: openfrontier/gerrit:2.14.x
+    ports:
+      - "29418:29418"
+      - "8080:8080"
+    volumes:
+      - ./gerrit:/var/gerrit/review_site
+    environment:
+      - DATABASE_TYPE=postgresql
+      - DATABASE_HOSTNAME=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_DATABASE=reviewdb
+      - DATABASE_USERNAME=gerrit
+      - DATABASE_PASSWORD=secret
+      - AUTH_TYPE=LDAP
+    networks:
+      - gerrit_nw
+    links:
+      - postgres
+    depends_on:
+      - postgres
+  httpd:
+    build: httpd
+    ports:
+      - "8080:80"
+    networks:
+      - gerrit_nw
+    depends_on: 
+      - gerrit
+networks:
+  gerrit_nw:
+    driver: bridge

@@ -3,7 +3,7 @@
 # VERSION 0.0.2
 
 FROM golang
-MAINTAINER work <lutx0528@thundersoft.com>
+MAINTAINER timeblink <timeblink@icloud.com>
 
 # Install packages
 RUN go get gopkg.in/mgo.v2

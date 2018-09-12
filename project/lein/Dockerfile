@@ -3,7 +3,7 @@
 # VERSION 0.0.2
 
 FROM lein:2.8.1
-MAINTAINER work <lutx0528@thundersoft.com>
+MAINTAINER timeblink <timeblink@icloud.com>
 
 VOLUME ["/workspace"]
 WORKDIR /workspace

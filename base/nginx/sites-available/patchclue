@@ -1,7 +1,7 @@
 server{
   listen 83 default_server bind;
   server_name_in_redirect on;
-  server_name 127.0.0.1 scm.pcp.lutx0528.cn;
+  server_name 127.0.0.1 pcp.timeblink.cn;
   root /website/pcp;
   proxy_redirect off;
   index index.html;

@@ -1,7 +1,7 @@
 # 集中管理Dockerfile
 
 * Author: lu tianxiang
-* E-mail: timeblink@gmail.com
+* E-mail: timeblink@icloud.com
 * Date  : 05/01/2018
 
 1. 05/01/2018 lu tianxiang

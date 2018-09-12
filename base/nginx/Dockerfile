@@ -3,7 +3,7 @@
 # VERSION 0.0.2
 
 FROM centos/base:7
-MAINTAINER work <work@work>
+MAINTAINER timeblink <timeblink@icloud.com>
 
 # Install Nginx.
 RUN yum -y install epel-release

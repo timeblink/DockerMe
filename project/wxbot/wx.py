@@ -12,9 +12,7 @@ import time
 
 from wxpy import *
 
-name_reg=u'TS内部分享群'
-
-xls_file_name="wx.xls"
+xls_file_name=os.path.dirname(os.path.abspath(__file__))+"wx.xls"
 
 bot = Bot(cache_path=True,console_qr=-1)
 
@@ -25,7 +23,7 @@ shObj = output_excel.add_sheet("wx")
 row_idx = 0
 
 for group in bot.groups():
-  if name_reg not in group.name: continue
+  #if name_reg not in group.name: continue
   group.update_group()
   for mem in group.members:
     shObj.write(row_idx,0,group.name)

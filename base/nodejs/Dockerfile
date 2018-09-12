@@ -3,7 +3,7 @@
 # VERSION 0.0.2
 
 FROM centos/base:7
-MAINTAINER work <lutx0528@thundersoft.com>
+MAINTAINER timeblink <timeblink@icloud.com>
 
 RUN yum -y install gcc gcc-c++ kernel-devel wget make.x86_64
 #RUN yum -y update && yum -y groupinstall"Development Tools"

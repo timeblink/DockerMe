@@ -1,0 +1,34 @@
+version: '2.0'
+services:
+  curry:
+    image: python/runtime:2.7
+    volumes:
+      - .:/workspace
+    depends_on:
+      - chrome
+    links:
+      - chrome
+    environment:
+      REVIEW_URL: "<gerrit_review_url>"
+      GERRIT_HOST: "<gerrit_host>"
+      GERRIT_PORT: <gerrit_port>
+      GERRIT_USERNAME: "<gerrit_username>"
+      GERRIT_PASSWORD: "<gerrit_password>"
+      GERRIT_QUERY: "<gerrit_query_str>"
+      WEBDRIVER: "true"
+    command: ["ipython","gerrit_curry.py"]
+  chrome:
+    image: selenium/node-chrome:3.10.0-argon
+    shm_size: '2gb'
+    volumes:
+      - /dev/shm:/dev/shm
+      - .:/downloads:rw
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+  hub:
+    image: selenium/hub:3.10.0-argon
+    ports:
+      - "4444:4444"
+

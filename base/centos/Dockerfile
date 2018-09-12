@@ -3,7 +3,7 @@
 # VERSION 0.0.2
 
 FROM centos:7
-MAINTAINER work <lutx0528@thundersoft.com>
+MAINTAINER timeblink <timeblink@icloud.com>
 
 ENV USER_NAME lutx0528
 ENV USER_GROUP lutx0528

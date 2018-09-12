@@ -3,7 +3,7 @@
 # VERSION 0.0.2
 
 FROM python/base:2.7
-MAINTAINER work <lutx0528@thundersoft.com>
+MAINTAINER timeblink <timeblink@icloud.com>
 
 # Install packages
 RUN rm -rf /var/lib/apt/lists/*
@@ -18,12 +18,18 @@ RUN yum -y install python-tornado
 RUN yum -y install python-ldap
 RUN rm -rf /var/lib/apt/lists/*
 RUN yum clean all
-RUN pip install better_exceptions
-RUN pip install Flask
-RUN pip install pymongo
-RUN pip install xlrd
-RUN pip install xlwt
-RUN pipenv install requests
+RUN pip install --upgrade pip
+#RUN pip install lxml
+RUN pip install --upgrade better_exceptions
+RUN pip install --upgrade PyYAML lxml
+RUN pip install --upgrade requests
+RUN pip install --upgrade selenium
+RUN pip install --upgrade pymongo
+RUN pip install --upgrade Flask
+RUN pip install --upgrade xlrd xlwt
+RUN pip install --upgrade --ignore-installed numpy
+RUN pip install --upgrade pandas
+RUN pip install --upgrade python-docx
 
 ENV BETTER_EXCEPTIONS 1
 

@@ -3,7 +3,7 @@
 # VERSION 0.0.2
 
 FROM node:latest
-MAINTAINER work <lutx0528@thundersoft.com>
+MAINTAINER timeblink <timeblink@icloud.com>
 
 RUN yum -y install \
   pango.x86_64 libXcomposite.x86_64 libXcursor.x86_64 \

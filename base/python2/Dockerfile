@@ -3,7 +3,7 @@
 # VERSION 0.0.2
 
 FROM centos/base:7
-MAINTAINER work <lutx0528@thundersoft.com>
+MAINTAINER timeblink <timeblink@icloud.com>
 
 # Install packages
 RUN rm -rf /var/lib/apt/lists/*
@@ -23,4 +23,5 @@ RUN yum -y install epel-release
 RUN rm -rf /var/lib/apt/lists/*
 RUN yum clean all
 RUN pip install --upgrade pip
-RUN pip install pipenv
+#RUN pip install pipenv
+RUN yum -y install openssh-clients.x86_64

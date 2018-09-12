@@ -1,9 +1,5 @@
 version: '2.0'
 services:
-  chrome:
-    image: selenium/standalone-chrome:latest
-    container_name: selenium-hub
-    shm_size: '2gb'
   sptools:
     image: python/sptools:2.7
     volumes:
@@ -12,4 +8,19 @@ services:
       - chrome
     links:
       - chrome
-    #command: ["test.py"]
+    command: ["test2.py"]
+  chrome:
+    image: selenium/node-chrome:3.10.0-argon
+    shm_size: '2gb'
+    volumes:
+      - /dev/shm:/dev/shm
+      - /home/lutx0528/fullstack/develop/github/DockerMe/project/sp:/downloads:rw
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+  hub:
+    image: selenium/hub:3.10.0-argon
+    ports:
+      - "4444:4444"
+

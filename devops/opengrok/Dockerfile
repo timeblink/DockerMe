@@ -1,4 +1,5 @@
 FROM openjdk:1.8
+MAINTAINER timeblink <timeblink@icloud.com>
 
 RUN yum -y install epel-release
 RUN yum -y install ctags.x86_64
