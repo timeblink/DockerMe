@@ -10,6 +10,20 @@ services:
     environment:
       - INIT_DAEMON_STEP=setup_spark
       - "constraint:node==spark-master"
+    depends_on:
+      - mongo-master
+    links:
+      - mongo-master
+    networks:
+      - spark_nw
+  spark-worker2:
+    image: bde2020/spark-worker:2.3.1-hadoop2.7
+    container_name: spark-worker2
+    depends_on:
+      - spark-master
+    environment:
+      - "SPARK_MASTER=spark://spark-master:7077"
+      - "constraint:node==spark-worker"
     networks:
       - spark_nw
   spark-worker1:
@@ -22,14 +36,14 @@ services:
       - "constraint:node==spark-worker"
     networks:
       - spark_nw
-  spark-worker2:
-    image: bde2020/spark-worker:2.3.1-hadoop2.7
-    container_name: spark-worker2
-    depends_on:
-      - spark-master
-    environment:
-      - "SPARK_MASTER=spark://spark-master:7077"
-      - "constraint:node==spark-worker"
+  mongo-master:
+    image: mongo
+    container_name: mongo-master
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - ./mongodb:/data/db
     networks:
       - spark_nw
 networks:

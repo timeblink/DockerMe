@@ -1,0 +1,39 @@
+
+
+
+./bin/pyspark \
+  --conf "spark.mongodb.input.uri=mongodb://192.168.15.33:27019/origin.changes?readPreference=primaryPreferred" \
+  --conf "spark.mongodb.output.uri=mongodb://192.168.15.33:27019/origin.output" \
+  --packages org.mongodb.spark:mongo-spark-connector_2.11:2.3.0
+
+
+./bin/pyspark \
+  --conf "spark.mongodb.input.uri=mongodb://192.168.12.66:27017/origin.changes?readPreference=primaryPreferred" \
+  --conf "spark.mongodb.output.uri=mongodb://192.168.12.66:27017/origin.output" \
+  --packages org.mongodb.spark:mongo-spark-connector_2.11:2.3.0
+
+
+
+./bin/pyspark \
+  --conf "spark.mongodb.input.uri=mongodb://mongo-master/origin.changes?readPreference=primaryPreferred" \
+  --conf "spark.mongodb.output.uri=mongodb://mongo-master/origin.output" \
+  --packages org.mongodb.spark:mongo-spark-connector_2.11:2.3.0
+
+
+
+from pyspark.sql import SparkSession
+
+my_spark = SparkSession.builder.appName("myApp").getOrCreate()
+
+df = my_spark.read.format("com.mongodb.spark.sql.DefaultSource").load()
+#df.printSchema()
+
+df.filter(df['status'] == 'MERGED').show(n=2,vertical=True,truncate=45)
+
+pipeline = "{'$match': {'status' : 'MERGED'}}"
+df = my_spark.read.format("com.mongodb.spark.sql.DefaultSource").option("pipeline", pipeline).load()
+df.show(n=2,vertical=True,truncate=45)
+
+
+
+org.apache.spark.sql.DataFrame

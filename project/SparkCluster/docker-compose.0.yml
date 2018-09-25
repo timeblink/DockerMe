@@ -12,16 +12,6 @@ services:
       - "constraint:node==spark-master"
     networks:
       - spark_nw
-  spark-worker1:
-    image: bde2020/spark-worker:2.3.1-hadoop2.7
-    container_name: spark-worker1
-    depends_on:
-      - spark-master
-    environment:
-      - "SPARK_MASTER=spark://spark-master:7077"
-      - "constraint:node==spark-worker"
-    networks:
-      - spark_nw
   spark-worker2:
     image: bde2020/spark-worker:2.3.1-hadoop2.7
     container_name: spark-worker2
@@ -32,7 +22,18 @@ services:
       - "constraint:node==spark-worker"
     networks:
       - spark_nw
+  spark-worker1:
+    image: bde2020/spark-worker:2.3.1-hadoop2.7
+    container_name: spark-worker1
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"
+    environment:
+      - "SPARK_MASTER=spark://spark-master:7077"
+      - "constraint:node==spark-worker"
+    networks:
+      - spark_nw
 networks:
   spark_nw:
-    #driver: bridge
-    external: true
+    driver: bridge
