@@ -17,3 +17,4 @@ runtime/GerritHost/postgres/ldap/nginx/gerrit/tmp
 runtime/GerritHost/postgres/ldap/nginx/gerrit/etc/mail
 runtime/GerritHost/postgres/ldap/nginx/gerrit/etc/ssh*
 runtime/SparkCluster/mongodb
+runtime/Semantic
