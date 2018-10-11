@@ -1,8 +1,8 @@
-# python web env base
+# python dev base
 #
 # VERSION 0.0.2
 
-FROM centos/base:7
+FROM centos:7
 MAINTAINER timeblink <timeblink@icloud.com>
 
 # Install packages

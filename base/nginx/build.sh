@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build --rm --tag nginx .
+docker build --rm --tag base/nginx .

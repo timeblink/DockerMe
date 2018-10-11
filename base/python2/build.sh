@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build --rm --tag python/base:2.7 .
+docker build --rm --tag base/python:2.7 .
