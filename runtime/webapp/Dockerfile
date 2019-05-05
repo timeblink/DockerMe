@@ -1,7 +1,7 @@
 # FMSv2
 # VERSION 0.0.2
 
-FROM debug/ipython:2.7
+FROM debug/python:2.7
 MAINTAINER timeblink <timeblink@icloud.com>
 
 VOLUME ["/website"]

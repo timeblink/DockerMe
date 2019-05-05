@@ -1,26 +1,28 @@
-version: '2.0'
+version: '3.0'
+
 services:
-  sptools:
-    image: python/sptools:2.7
-    volumes:
-      - /home/lutx0528/fullstack/develop/github/DockerMe/project/sp:/workspace
-    depends_on:
-      - chrome
-    links:
-      - chrome
-    command: ["test2.py"]
+  hub:
+    image: selenium/hub:3.10.0-argon
+    ports:
+      - "4444:4444"
   chrome:
     image: selenium/node-chrome:3.10.0-argon
     shm_size: '2gb'
     volumes:
       - /dev/shm:/dev/shm
-      - /home/lutx0528/fullstack/develop/github/DockerMe/project/sp:/downloads:rw
     depends_on:
       - hub
     environment:
       HUB_HOST: hub
-  hub:
-    image: selenium/hub:3.10.0-argon
-    ports:
-      - "4444:4444"
+      HUB_PORT: 4444
+  weblogin:
+    image: debug/python:2.7
+    volumes:
+      - /home/lutx0528/fullstack/develop/github/DockerMe/runtime/sp:/workspace
+    depends_on:
+      - chrome
+    links:
+      - chrome
+    working_dir: /workspace
+    command: ["python","test.py"]
 

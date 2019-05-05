@@ -2,7 +2,7 @@
 #
 # VERSION 0.0.2
 
-FROM openjdk:1.8
+FROM openjdk:8-jdk
 MAINTAINER timeblink <timeblink@icloud.com>
 
 # Install packages
